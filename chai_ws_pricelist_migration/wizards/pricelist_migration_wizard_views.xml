@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pricelist_migration_wizard_form" model="ir.ui.view">
+        <field name="name">chai.pricelist.migration.wizard.form</field>
+        <field name="model">chai.pricelist.migration.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Migrar Listas de Precio por Producto">
+                <sheet>
+                    <group>
+                        <field name="pricelist_id"
+                               options="{'no_create': True}"/>
+                    </group>
+                    <group string="1) Exportar (en la base ORIGEN, ej. backup v16)">
+                        <field name="export_file" filename="export_filename"/>
+                        <field name="export_filename" invisible="1"/>
+                    </group>
+                    <div>
+                        <button name="action_export" type="object"
+                                string="Exportar reglas de esta lista"
+                                class="btn-primary"/>
+                    </div>
+                    <group string="2) Importar (en la base DESTINO, ej. produccion v18)">
+                        <field name="import_file" filename="import_filename"/>
+                        <field name="import_filename" invisible="1"/>
+                        <field name="dry_run"/>
+                    </group>
+                    <div>
+                        <button name="action_import" type="object"
+                                string="Previsualizar / Importar a esta lista"
+                                class="btn-primary"/>
+                    </div>
+                    <group string="Resultado">
+                        <field name="result_html" nolabel="1" colspan="2"/>
+                        <field name="report_file" filename="report_filename"/>
+                        <field name="report_filename" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pricelist_migration_wizard" model="ir.actions.act_window">
+        <field name="name">Migrar Listas de Precio</field>
+        <field name="res_model">chai.pricelist.migration.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_pricelist_migration_root"
+              name="Migrar Precios" sequence="90"
+              web_icon="chai_ws_pricelist_migration,static/description/icon.png"/>
+    <menuitem id="menu_pricelist_migration"
+              name="Migrar Listas de Precio"
+              parent="menu_pricelist_migration_root"
+              action="action_pricelist_migration_wizard" sequence="10"/>
+</odoo>
