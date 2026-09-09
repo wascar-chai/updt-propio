@@ -9,6 +9,7 @@ Una por versión de Odoo. Cada módulo va en la rama que le corresponde.
 | Rama | Para |
 |---|---|
 | `main` | Solo esta documentación. No la uses como submódulo. |
+| `16.0` | Módulos de Odoo 16 |
 | `17.0` | Módulos de Odoo 17 |
 | `18.0` | Módulos de Odoo 18 |
 | `19.0` | Módulos de Odoo 19 |
